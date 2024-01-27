@@ -916,7 +916,7 @@ class Control {
         });
     }
 
-    async initDatatable3(url, columns, saldoAwal) {
+    async initDatatable3(url, columns) {
         // Destroy the existing DataTable
         if (this.table && $.fn.DataTable.isDataTable(this.table)) {
             this.table.DataTable().destroy();
@@ -942,11 +942,38 @@ class Control {
             },
             footerCallback: function (row, data, start, end, display) {
                 var api = this.api();
-                var subtotalTotal = saldoAwal === undefined ? 0 : parseFloat(saldoAwal);
+                var subtotalTotal = 0;
 
                 // Calculate total for 'masuk' and 'keluar' columns
                 api.rows({ search: 'applied' }).data().each(function (value) {
-                    subtotalTotal += (value.masuk - value.keluar);
+                    // subtotalTotal += (value.masuk - value.keluar);
+
+                    let keluar = 0;
+                    let masuk = 0;
+
+                    if (value.keluar) {
+                        $.each(value.keluar, function (x, y) {
+                            // Pastikan y berisi angka sebelum di-parse ke float
+                            let parsedValue = parseFloat(y);
+                            if (!isNaN(parsedValue)) {
+                                keluar += parsedValue;
+                            }
+                        });
+                    } else {
+                        keluar = 0;
+                    }
+
+                    if (value.masuk) {
+                        masuk = value.masuk
+                    } else {
+                        masuk = 0;
+                    }
+
+                    // Menghitung sisa saldo
+                    let sisaSaldo = masuk - keluar;
+
+                    // Menambahkan sisa saldo ke variabel kumulatif
+                    subtotalTotal += sisaSaldo;
                 });
 
                 // Update the total row in the footer

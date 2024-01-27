@@ -46,6 +46,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/update-pengeluaran/{params}', 'BiayaController@update')->name('update-pengeluaran');
         Route::delete('/delete-pengeluaran/{params}', 'BiayaController@delete')->name('delete-pengeluaran');
 
+        Route::get('/laporan', 'Laporan@index')->name('laporan');
+        Route::get('/get-laporan/{params}', 'Laporan@getLaporan')->name('get-laporan');
+        Route::get('/export-laporan/{params}', 'Laporan@exportToExcel')->name('export-laporan');
+
         Route::get('/ubahpassword', 'UbahPassword@index')->name('ubahpassword');
         Route::post('/update-password/{params}', 'UbahPassword@update')->name('update-password');
     });

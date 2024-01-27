@@ -720,6 +720,23 @@
             </div>
             <!--end::Menu item-->
 
+            <!--begin::Menu item-->
+            <div class="menu-item">
+                <a class="menu-link {{ $path[1] === 'laporan' ? 'active' : '' }}" href="{{ route('admin.laporan') }}">
+                    <span class="menu-icon">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                        <span class="svg-icon svg-icon-2">
+                            <img src="{{ $path[1] === 'laporan' ? url('admin/assets/media/icons/aside/laporanact.svg') : url('/admin/assets/media/icons/aside/laporandef.svg') }}"
+                                alt="">
+                        </span>
+                        <!--end::Svg Icon-->
+                    </span>
+                    <span class="menu-title"
+                        style="{{ $path[1] === 'laporan' ? 'color: #F4BE2A' : 'color: #FFFFFF' }}">Laporan</span>
+                </a>
+            </div>
+            <!--end::Menu item-->
+
             <div class="menu-item">
                 <a class="menu-link  {{ $path[1] === 'ubahpassword' ? 'active' : '' }}"
                     href="{{ route('admin.ubahpassword') }}">
