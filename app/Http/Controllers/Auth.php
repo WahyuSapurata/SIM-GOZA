@@ -61,4 +61,10 @@ class Auth extends BaseController
 
         return $this->sendResponse('Success', 'Berhasil logout');
     }
+
+    public function get_user()
+    {
+        $user = auth()->user();
+        return $this->sendResponse($user, 'Berhasil get data');
+    }
 }

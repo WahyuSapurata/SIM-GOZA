@@ -23,6 +23,8 @@ Route::middleware('cors')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/do-ubahpassword/{params}', [UbahPassword::class, 'update']);
 
+        Route::get('/api-getuser', [Auth::class, 'get_user']);
+
         Route::post('/api-penjualan-add', [PenjualanController::class, 'store']);
         Route::post('/api-pengeluaran-add', [BiayaController::class, 'store']);
 
